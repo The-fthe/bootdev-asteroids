@@ -39,7 +39,6 @@ def main():
         # render
         screen.fill(pygame.Color(0, 0, 0))
         ply.draw(screen)
-
         pygame.display.flip()
 
         # limit the framerate to 60FPS
