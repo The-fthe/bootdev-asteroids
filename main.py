@@ -34,6 +34,9 @@ def main():
                     pygame.quit()
                     sys.exit()
 
+        ply.update(dt)
+
+        # render
         screen.fill(pygame.Color(0, 0, 0))
         ply.draw(screen)
 
