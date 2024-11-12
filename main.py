@@ -20,6 +20,10 @@ def main():
 
     x = SCREEN_WIDTH / 2
     y = SCREEN_HEIGHT / 2
+
+    updatable = pygame.sprite.Group()
+    drawable = pygame.sprite.Group()
+    player.Player.containers = (updatable, drawable)
     ply = player.Player(x, y)
 
     while True:
@@ -34,11 +38,13 @@ def main():
                     pygame.quit()
                     sys.exit()
 
-        ply.update(dt)
+        for u in updatable:
+            u.update(dt)
 
         # render
         screen.fill(pygame.Color(0, 0, 0))
-        ply.draw(screen)
+        for d in drawable:
+            d.draw(screen)
         pygame.display.flip()
 
         # limit the framerate to 60FPS
