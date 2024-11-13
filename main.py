@@ -1,8 +1,10 @@
 import pygame
-import player
 import signal
 import sys
 from constants import *
+from player import Player
+from asteroid import Asteroid
+from asteroidfield import AsteroidField
 
 
 def signal_handler(sig, frame):
@@ -15,16 +17,21 @@ def main():
     signal.signal(signal.SIGTERM, signal_handler)
 
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
-    dt = 0
     clock = pygame.time.Clock()
-
-    x = SCREEN_WIDTH / 2
-    y = SCREEN_HEIGHT / 2
 
     updatable = pygame.sprite.Group()
     drawable = pygame.sprite.Group()
-    player.Player.containers = (updatable, drawable)
-    ply = player.Player(x, y)
+    asteroids = pygame.sprite.Group()
+
+    Asteroid.containers = (asteroids, updatable, drawable)
+    AsteroidField.containers = updatable
+    asteroid_field = AsteroidField()
+
+    Player.containers = (updatable, drawable)
+
+    player = Player(SCREEN_WIDTH / 2, SCREEN_WIDTH / 2)
+
+    dt = 0
 
     while True:
         for event in pygame.event.get():
