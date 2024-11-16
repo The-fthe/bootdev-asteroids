@@ -60,7 +60,7 @@ def main():
             for s in shots:
                 if s.collision_with(a):
                     s.kill()
-                    a.kill()
+                    a.split()
 
         # render
         screen.fill(pygame.Color(0, 0, 0))

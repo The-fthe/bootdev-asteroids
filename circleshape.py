@@ -23,3 +23,6 @@ class CircleShape(pygame.sprite.Sprite):
         r1 = self.radius
         r2 = other.radius
         return distance < r1 + r2
+
+    def split(self):
+        pass
